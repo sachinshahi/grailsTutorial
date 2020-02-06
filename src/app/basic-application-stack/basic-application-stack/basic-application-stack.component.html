@@ -1,1 +1,159 @@
-<p>basic-application-stack works!</p>
+<h2>Creating a Controller</h2>
+<div>
+  Naming convention <br/>
+  Think as a nourn <br/>
+  Use Capital Letter and don't use space<br/>
+  Appear in Url <br/>
+
+</div>
+<!--
+package rewards
+
+class InventoryController {
+
+def index() { } //action
+}
+-->
+
+class contain actions. default action is index. All of the action starts with keyword define followed by name
+Url: http://localhost:8090/Inventory/index <br/>
+controllerName/action
+<br/>
+<br/>
+Url: http://localhost:8090/Inventory
+// Index is the default so you can skip index
+<h2>Creating a View</h2>
+<div></div>
+<!--
+class InventoryController {
+
+def index() {
+render "Here is a list of everything."
+}
+}-->
+
+Actions are independent to each other. you can any number of action in controller. But they should relate to each other.
+
+<!--
+class InventoryController {
+
+def remove() {
+render "Here is a list of everything."
+}
+}-->
+If you have one action then that action will be default action. In above controller remove will be default action. http://localhost:8090/inventory will call actin remove <br/>
+If you have multiple action then index will be default action.
+
+<h2>Creating a View</h2>
+<div>
+  <!--class InventoryController {
+  def edit() {
+  def productName = "Breakfast Blend"
+  def sku = "BB01"
+  [product: productName, sku: sku] // first one(product) is the placeholder in view and productName is the variable
+  }
+  }-->
+
+  view name and action name should be same.
+  edit.gsp
+<!--
+  <!doctype html>
+  <html>
+  <head>
+    <title>Edit Inventory</title>
+  </head>
+
+  <body>
+  ${product} ${sku}
+  </body>
+  </html>-->
+</div>
+----------------------------------------
+edit.gsp
+<!--<!doctype html>
+<html>
+<head>
+  <title>Edit Inventory</title>
+</head>
+
+<body>
+<form>
+  Product:<
+  input type="text" size="40" name="product" value="${product}"/>
+  <p>SKU <input type="text" name="sku" value="${sku}"/></p>
+</form>
+</body>
+</html>-->
+
+<h2>Accessing a Model</h2>
+<div>
+Under domain Folder
+Create Product.groovy it acts as a model and table is created by groovy itself which is shifte in groovy
+ Insert data in database
+  //  grail has dbconsole
+  http://localhost:8090/h2-console/
+  set jdbc url===
+  jdbc:h2:mem:devDb
+  Click in product and add Data
+</div>
+
+<h2>
+  <div>
+    Accessing a Model
+    package rewards
+
+    <!--class InventoryController {
+    def list(){
+    def allProducts = Product.list()
+    [allProducts: allProducts]
+    }
+    }-->
+
+    list.gsp
+    <!--<!doctype html>
+    <html>
+    <head>
+      <title>List Products</title>
+    </head>
+
+    <body>
+    ${allProducts}
+    </body>
+    </html>-->
+------------------------------------
+    list.gsp
+    <!--<!doctype html>
+    <html>
+    <head>
+      <title>List Products</title>
+    </head>
+
+    <body>
+    ${allProducts.name} ${allProducts.sku} ${allProducts.price}
+    </body>
+    </html>-->
+ ----------------------------------
+    list.gsp
+    <!--<!doctype html>
+    <html>
+    <head>
+      <title>List Products</title>
+    </head>
+
+    <body>
+    ${allProducts.name} ${allProducts.sku} ${allProducts.price}
+    <table border="1">
+      <g:each in="${allProducts}" var="thisProduct">
+        <tr>
+          <td>${thisProduct.name}</td>
+          <td>${thisProduct.sku}</td>
+          <td>${thisProduct.price}</td>
+        </tr>
+      </g:each>
+    </table>
+    </body>
+    </html>-->
+  </div>
+</h2>
+
+

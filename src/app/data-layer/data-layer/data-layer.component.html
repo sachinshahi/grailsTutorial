@@ -1,0 +1,305 @@
+<section>
+  <h2>Creating An Entity Relationship Diagram</h2>
+  <div>
+    Look at the video
+  </div>
+</section>
+
+<section>
+  <h2>Field Types</h2>
+  <div>
+    <!--class Customer {
+    String firstName
+    String lastName
+    Long phone
+    String email
+    Integer totalPooints
+
+    static constraints = {
+    }
+    }-->
+
+    <!--class Award {
+    Date awardDate
+    String type
+    Integer points
+
+    static constraints = {
+    }
+    }-->
+<!--
+    class Order {
+    Date orderDate
+    Integer orderNumber
+    Float orderTotal
+
+    static constraints = {
+    }
+    }-->
+
+    <!--class OrderItem {
+    Integer qty
+    Float total
+
+    static constraints = {
+    }
+    }-->
+
+    <!--class Product {
+    String name
+    String sku
+    Float price
+
+    static constraints = {
+    }
+    }-->
+  </div>
+</section>
+
+
+
+<section>
+  <h2>Relationships Between Domain Classes</h2>
+  <div>
+
+<!--
+    class Customer {
+    .........
+    static hasMany=[awards: Award, orders: Order]
+
+    static constraints = {
+    }
+    }
+-->
+
+    <!--class Award {
+    .......
+    static belongsTo = [customer: Customer]
+
+    static constraints = {
+    }
+    }-->
+
+<!--
+    class Order {
+    ......
+    static belongsTo = [customer: Customer]
+    static hasMany = [orderItems: OrderItem]
+    static constraints = {
+    }
+    }
+-->
+<!--
+    class OrderItem {
+    .......
+    static belongsTo = [order: Order, product: Product]
+
+    static constraints = {
+    }
+    }
+-->
+
+<!--
+
+class Product {
+   ....
+    static hasMany = [orderItems: OrderItem]
+
+    static constraints = {
+    }
+}
+-->
+
+
+
+  </div>
+</section>
+
+<section>
+  <h2>Refactoring with GGTS</h2>
+  <div>
+    Order table won't be created because In sql we have order by clause(order by asc or desc)
+    So change the name of Order to OnlineOrder
+  </div>
+</section>
+
+
+<section>
+  <h2>Dynamic Scaffolding</h2>
+  <div>
+    You can perform CRUD operation
+    Create, Read, Update and Delete
+    Just add one line in controller, it will automatically create view and action
+    <!--class AwardController {
+    static  scaffold =  Award
+    // def index() { }
+    }-->
+
+    <!--class CustomerController {
+    static scaffold = Customer
+    // def index() { }
+    }-->
+
+    <!--class OnlineOrderController {
+    static scaffold = OnlineOrder
+    // def index() { }
+    }-->
+
+<!--
+    class OrderItemController {
+    static scaffold = OrderItem
+    def index() { }
+    }
+-->
+<!--
+
+    class ProductController {
+    static scaffold = Product
+    def index() { }
+    }-->
+
+  </div>
+</section>
+
+<section>
+  <h2>Static Scaffolding</h2>
+  <div>
+    you physically end up creating view and controller action
+    you can customize view and action in case if you want to save infomration
+    if you want to change the view ui
+  </div>
+</section>
+
+<section>
+  <h2>Constraints - Field Order</h2>
+  <div>
+    Field Order in table will be the order defined in constraints
+    <!--class Customer {
+    String firstName
+    String lastName
+    Long phone
+    String email
+    Integer totalPoints
+    static hasMany=[awards: Award, orders: OnlineOrder]
+
+    static constraints = {
+    phone()
+    firstName()
+    lastName()
+    email()
+    totalPoints()
+    }
+    }-->
+
+  </div>
+</section>
+
+<section>
+  <h2>Constraints - Nullable Fields</h2>
+  <div>
+<!--
+    class Customer {
+    String firstName
+    String lastName
+    Long phone
+    String email
+    Integer totalPoints
+    static hasMany=[awards: Award, orders: OnlineOrder]
+
+    static constraints = {
+    phone()
+    firstName(nullable: true)
+    lastName(nullable: true)
+    email(nullable: true)
+    totalPoints(nullable: true)
+    }
+    }
+
+-->
+  </div>
+</section>
+
+<section>
+  <h2>Constraints - Field Value Size</h2>
+  <div>
+    1) for string size: 1..255(size take ranges)
+    for nullable: true we cannot use size constraint
+    2) maxSize : 255 //cannot put more than 255 character
+    maxSize is used for string
+    3) max: 10
+    max is used for number
+
+<!--
+    class Customer {
+    String firstName
+    String lastName
+    Long phone
+    String email
+    Integer totalPoints
+    static hasMany=[awards: Award, orders: OnlineOrder]
+
+    static constraints = {
+    phone()
+    firstName(nullable: true)
+    lastName(nullable: true)
+    email(nullable: true, maxSize: 255)
+    totalPoints(nullable: true, max: 10)
+    }
+    }
+-->
+
+  </div>
+</section>
+
+<section>
+  <h2>Constraintss- Field Value Contents</h2>
+  <div>
+    email: true constraint
+
+    <!--class Customer {
+      ....
+    static constraints = {
+    ...
+    email(nullable: true, email: true)
+    ...
+    }
+    }
+-->
+
+    My Award type can be only Purchase or Reward
+    <!--class Award {
+    Date awardDate
+    String type
+    Integer points
+    static belongsTo = [customer: Customer]
+
+    static constraints = {
+    type(inList: ["Purchase", "Reward"])
+    }
+    }-->
+  </div>
+</section>
+
+<section>
+  <h2>Bototstrapping Data</h2>
+  <div>
+    In development enviroment when you restart serve it wipe out all your data.
+    Bootstrapping is processing of prepopulation some data when application gets loaded.
+
+    BootStrap.groovy
+<!--
+    class BootStrap {
+
+    def init = { servletContext ->
+    new rewards.Product(name: "Morning Blend", sku: "MB01", price: 14.95).save()
+    new rewards.Product(name: "Dark Rost", sku: "MB01", price: 14.95).save()
+
+    }
+    def destroy = {
+    }
+    }
+-->
+
+
+  </div>
+</section>

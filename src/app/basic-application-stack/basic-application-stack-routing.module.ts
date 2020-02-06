@@ -3,7 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import {BasicApplicationStackComponent} from './basic-application-stack/basic-application-stack.component';
 
 const routes: Routes = [
-  {path: '', component: BasicApplicationStackComponent}
+  {path: '', pathMatch: 'full', redirectTo: 'basic'},
+  {path: 'basic', component: BasicApplicationStackComponent},
 ];
 
 @NgModule({

@@ -1,0 +1,438 @@
+<section>
+  <h2>Skinning- Creating A Logo</h2>
+  <div>
+    .png or svg
+    1) Add image under image folder of asset.
+    2) view/layout
+    change the logo image
+  </div>
+</section>
+
+<section>
+  <h2>Skinning - Adding A Favourite Icon</h2>
+  <div>
+    .gif or .ico
+    <!--%{&#45;&#45;
+    <asset:link rel="icon" href="favicon.ico" type="image/x-ico"/>
+    &#45;&#45;}%
+    <asset:link rel="icon" href="cupicon.gif" type="image/x-gif"/>-->
+  </div>
+</section>
+
+<section>
+  <h2>Skinning - Picking Colors</h2>
+  Go to w3 schools HTML COLOR Picker
+  <div>
+    
+  </div>
+</section>
+
+<section>
+  <h2>Skinning - Modifying Colors</h2>
+  1)grails-app/stylesheets/main.css
+  2)
+  <div>
+    
+  </div>
+</section>
+<section>
+  <h2>Structure Of A View</h2>
+  <div>
+    We can reuse the code in two ways;
+    1) layout
+    2) template
+    1 ) Layout
+    Layout can be called only oncein view
+    we can put content in layout
+    2) tempate
+    we can add serveral template in view
+
+    <!--class FeedbackController {
+
+    def index() { }
+    }-->
+
+    index.gsp
+<!--
+    <!doctype html>
+    <html>
+    <head>
+      <meta name="layout" content="main">
+      <g:set var="entityName" value="Feedback Form" />
+      <title>Feedback Form</title>
+    </head>
+    <body>
+    <div class="nav" role="navigation">
+      <ul>
+        <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+
+      </ul>
+    </div>
+    <div id="create-feedbackForm" class="content scaffold-create" role="main">
+      <h1><g:message code="Feedback Form" /></h1>
+      <g:form action="index" >
+        <fieldset class="form">
+          <g:render template="form"/>
+        </fieldset>
+        <fieldset class="buttons">
+          <g:submitButton name="index" class="save" value="Submit" />
+        </fieldset>
+      </g:form>
+    </div>
+    </body>
+    </html>
+-->
+
+    _form.gsp
+    <!-- This should be empty -->
+
+
+  </div>
+</section>
+
+<section>
+  <h2>Text Fields</h2>
+  <div>
+    _form is the part of index.gsp
+
+    _form.gsp
+<!--
+
+    <div class="fieldcontain">
+      <label for="firstName">
+        First Name
+      </label>
+      <g:textField name="firstName" value="${firstName}"></g:textField>
+    </div>
+    <div class="fieldcontain">
+      <label for="comments">
+        Comments
+      </label>
+      <g:textArea name="comments" value="${comments}"/>
+    </div>
+
+    <div class = "fieldcontain">
+      <label for="password">
+        Password
+      </label>
+      <g:passwordField name="password" value="${password}"></g:passwordField>
+    </div>
+
+-->
+
+  </div>
+</section>
+<section>
+  <h2>Selectable Fields</h2>
+  <div>
+    _form.gsp
+    <!--
+   .................
+    <div class="fieldcontain">
+      <label for="notify">
+        Do you want e-mail notifications?
+      </label>
+      <g:checkBox name="notify" value="${notify}">checkbox1</g:checkBox>
+    </div>
+
+    <div class="fieldcontain">
+      <label for="gender">
+        Gender:
+      </label>
+      <g:radioGroup labels="['Male', 'Female']" values="['M', 'F']" value="${gender}" name="gender">
+        ${it.label} ${it.radio}
+      </g:radioGroup>
+    </div>
+-->
+
+  </div>
+</section>
+
+<section>
+  <h2>Select Fields</h2>
+  <div>
+
+<!--
+    ............
+    <div class="fieldcontain">
+      <label for="marketing">
+        How did you hear about us?
+      </label>
+      <g:select name="marketing" value="${marketing}" from="['Internet', 'Friend', 'Other']">
+
+      </g:select>
+
+    </div>-->
+  </div>
+</section>
+<section>
+  <h2>Installling Boostrap</h2>
+  <div>
+    learn bootstrap in infiniteskill
+    // checkin.gsp
+   <!-- <!doctype html>
+    <html>
+
+    <head>
+      <title>Kiosk</title>
+      <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap.min.css')}" type="text/css">
+    </head>
+
+    <body>
+    <g:form url="[resource:customerInstance, action:'customerLookup']" >
+      <g:render template="kioskForm"/>
+    </g:form>
+    </body>
+    </html>-->
+
+    _kioskForm.gsp
+    ///no content
+  </div>
+</section>
+
+<section>
+  <h2>What IS A Fluid Grid</h2>
+  <div>
+    A fluid grid is just a margin in a webpage: Responsive grid
+    layout in rows and columns
+    Create rows and divide rows into columns
+  </div>
+</section>
+<section>
+  <h2>Adding The Kiosk Banner</h2>
+  <div>
+    We can choose multiple grid sm, lg
+    We define row and inside row we have 1 or more columns. Columns is necessary because we define width in columns
+    Bootstrap define 12 columns and how width is columns.
+    12 is used because it is divisible by so many numbers
+    _kioskForm.gsp
+<!--
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <asset:image src="banner.png"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+        </div>
+        <div class="col-sm-6">
+        </div>
+      </div>
+    </div>-->
+  </div>
+</section>
+
+<section>
+  <h2>Kiosk Welcome Message And Phone Number</h2>
+  <div>
+    _kiosform.gsp
+
+    <!-- <div class="container">
+       <div class="row">
+         <div class="col-sm-12">
+           <asset:image src="banner.png"/>
+         </div>
+       </div>
+
+       <div class="row">
+         <div class="col-sm-5 col-sm-offset-1">
+           <h4> Welcome back Mike.</h4>
+           <p> <h4>You have 3 points.</h4></p>
+         </div>
+         <div class="col-sm-6">
+           <g:textField name="phone" placeholder="Enter your cell number to check in" class="form-control" value="${phone}"></g:textField>
+         </div>
+       </div>
+     </div>-->
+  </div>
+</section>
+<section>
+  <h2>Creating The Button Pad</h2>
+  <div>
+    _kiosform.gsp
+
+    <!-- <div class="container">
+       <div class="row">
+         <div class="col-sm-12">
+           <asset:image src="banner.png"/>
+         </div>
+       </div>
+
+       <div class="row">
+         <div class="col-sm-5 col-sm-offset-1">
+           <h4> Welcome back Mike.</h4>
+           <p> <h4>You have 3 points.</h4></p>
+         </div>
+         <div class="col-sm-6">
+           <g:textField name="phone" placeholder="Enter your cell number to check in" class="form-control" value="${phone}"></g:textField>
+           <div class="row">
+             <h4></h4>
+           </div>
+           <div class="row">
+             <div class="col-sm-4"><input class="btn btn-primary btn-lg btn-block" type="button" name="pad" value="1"/></div>
+             <div class="col-sm-4"><input class="btn btn-primary btn-lg btn-block" type="button" name="pad" value="2"/></div>
+             <div class="col-sm-4"><input class="btn btn-primary btn-lg btn-block" type="button" name="pad" value="3"/></div>
+           </div>
+
+         </div>
+       </div>
+     </div>-->
+
+    -----------------------------------------------------------------------------------------------------------------------
+    _kiosform.gsp
+<!--
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <asset:image src="banner.png"/>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-5 col-sm-offset-1">
+          <h4> Welcome back Mike.</h4>
+          <p> <h4>You have 3 points.</h4></p>
+        </div>
+        <div class="col-sm-6">
+          <div class="row">
+            <div class="col-sm-12">
+              <g:textField name="phone" placeholder="Enter your cell number to check in" class="form-control" value="${phone}"></g:textField>
+            </div>
+          </div>
+
+          <div class="row">
+            <h4></h4>
+          </div>
+          <div class="row">
+            <div class="col-sm-4"><input class="btn btn-primary btn-lg btn-block" type="button" name="pad" value="1"/></div>
+            <div class="col-sm-4"><input class="btn btn-primary btn-lg btn-block" type="button" name="pad" value="2"/></div>
+            <div class="col-sm-4"><input class="btn btn-primary btn-lg btn-block" type="button" name="pad" value="3"/></div>
+          </div>
+
+
+          <div class="row">
+            <h4></h4>
+          </div>
+          <div class="row">
+            <div class="col-sm-4"><input class="btn btn-primary btn-lg btn-block" type="button" name="pad" value="4"/></div>
+            <div class="col-sm-4"><input class="btn btn-primary btn-lg btn-block" type="button" name="pad" value="5"/></div>
+            <div class="col-sm-4"><input class="btn btn-primary btn-lg btn-block" type="button" name="pad" value="6"/></div>
+          </div>
+
+          <div class="row">
+            <h4></h4>
+          </div>
+          <div class="row">
+            <div class="col-sm-4"><input class="btn btn-primary btn-lg btn-block" type="button" name="pad" value="7"/></div>
+            <div class="col-sm-4"><input class="btn btn-primary btn-lg btn-block" type="button" name="pad" value="8"/></div>
+            <div class="col-sm-4"><input class="btn btn-primary btn-lg btn-block" type="button" name="pad" value="9"/></div>
+          </div>
+
+          <div class="row">
+            <h4></h4>
+          </div>
+          <div class="row">
+            <div class="col-sm-4"><input class="btn btn-primary btn-lg btn-block" type="button" name="pad" value="Del"/></div>
+            <div class="col-sm-4"><input class="btn btn-primary btn-lg btn-block" type="button" name="pad" value="0"/></div>
+            <div class="col-sm-4"><input class="btn btn-primary btn-lg btn-block" type="button" name="pad" value="Go"/></div>
+          </div>
+        </div>
+      </div>
+    </div>-->
+  </div>
+</section>
+
+<section>
+  <h2>Button Colors</h2>
+  <div>
+    _kiosform.gsp
+    <!--
+        <div class="container">
+         .....
+              <div class="row">
+                <div class="col-sm-4"><input class="btn btn-danger btn-lg btn-block" type="button" name="pad" value="Del"/></div>
+                <div class="col-sm-4"><input class="btn btn-primary btn-lg btn-block" type="button" name="pad" value="0"/></div>
+                <div class="col-sm-4"><input class="btn btn-success btn-lg btn-block" type="button" name="pad" value="Go"/></div>
+              </div>
+        </div> -->
+    
+  </div>
+</section>
+<section>
+  <h2>Activating The Pad Buttons</h2>
+  <div>
+    _kiosform.gsp
+    <!--
+
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12">
+              <asset:image src="banner.png"/>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-5 col-sm-offset-1">
+              <h4> Welcome back Mike.</h4>
+              <p> <h4>You have 3 points.</h4></p>
+            </div>
+            <div class="col-sm-6">
+              <div class="row">
+                <div class="col-sm-12">
+                  <g:textField id="phone" name="phone" placeholder="Enter your cell number to check in" class="form-control" value="${phone}"></g:textField>
+                </div>
+              </div>
+
+              <div class="row">
+                <h4></h4>
+              </div>
+              <div class="row">
+                <div class="col-sm-4"><input class="btn btn-primary btn-lg btn-block" type="button" name="pad" value="1" onclick="padkey(this.value)"/></div>
+                <div class="col-sm-4"><input class="btn btn-primary btn-lg btn-block" type="button" name="pad" value="2" onclick="padkey(this.value)"/></div>
+                <div class="col-sm-4"><input class="btn btn-primary btn-lg btn-block" type="button" name="pad" value="3" onclick="padkey(this.value)"/></div>
+              </div>
+
+
+              <div class="row">
+                <h4></h4>
+              </div>
+              <div class="row">
+                <div class="col-sm-4"><input class="btn btn-primary btn-lg btn-block" type="button" name="pad" value="4" onclick="padkey(this.value)"/></div>
+                <div class="col-sm-4"><input class="btn btn-primary btn-lg btn-block" type="button" name="pad" value="5" onclick="padkey(this.value)"/></div>
+                <div class="col-sm-4"><input class="btn btn-primary btn-lg btn-block" type="button" name="pad" value="6" onclick="padkey(this.value)"/></div>
+              </div>
+
+              <div class="row">
+                <h4></h4>
+              </div>
+              <div class="row">
+                <div class="col-sm-4"><input class="btn btn-primary btn-lg btn-block" type="button" name="pad" value="7" onclick="padkey(this.value)"/></div>
+                <div class="col-sm-4"><input class="btn btn-primary btn-lg btn-block" type="button" name="pad" value="8" onclick="padkey(this.value)"/></div>
+                <div class="col-sm-4"><input class="btn btn-primary btn-lg btn-block" type="button" name="pad" value="9" onclick="padkey(this.value)"/></div>
+              </div>
+
+              <div class="row">
+                <h4></h4>
+              </div>
+              <div class="row">
+                <div class="col-sm-4"><input class="btn btn-danger btn-lg btn-block" type="button" name="pad" value="Del"/></div>
+                <div class="col-sm-4"><input class="btn btn-primary btn-lg btn-block" type="button" name="pad" value="0" onclick="padkey(this.value)"/></div>
+                <div class="col-sm-4"><input class="btn btn-success btn-lg btn-block" type="button" name="pad" value="Go"/></div>
+              </div>
+            </div>
+          </div>
+        </div> &lt;!&ndash;End of container-&ndash;&gt;
+
+        <script>
+          function padkey(num) {
+            var txt= document.getElementById("phone").value;
+            txt = txt + num;
+            document.getElementById("phone").value = txt;
+          }
+        </script>
+    -->
+
+  </div>
+</section>
+
