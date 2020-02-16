@@ -1,1 +1,253 @@
-<p>gorm-data-management works!</p>
+
+<section>
+  <h2>List Queries</h2>
+  <div>
+  
+class CustomerController {
+    static scaffold = Customer
+	
+	def lookup() {
+		//def customerInstance = Customer.list()
+		//def customerInstance = Customer.list(sort : "lastName")
+		//def customerInstance = Customer.list(sort : "phone", order: "desc")
+		//defulat order is asc
+		def customerInstance = Customer.list(sort : "lastName", order: "desc", max: 5, offset : 0)
+		[customerInstanceList: customerInstance]
+	}
+
+}
+  </div>
+</section>
+
+
+<section>
+  <h2>Dynamic finders</h2>
+  <div>
+  class CustomerController {
+    static scaffold = Customer
+	
+	def lookup() {
+		//def customerInstance = Customer.findAllByLastName("Foster")
+		//def customerInstance = Customer.findAllByTotalPoints(5, [sort: "lastName"])
+		//def customerInstance = Customer.findAllByPhone(params.id, [sort: "lastName"])
+		
+		//if you have only one result then used this one for performance
+		def customerInstance = Customer.findByPhone(params.id, [sort: "lastName"])
+		
+		[customerInstanceList: customerInstance]
+	}
+
+}
+
+  </div>
+</section>
+
+
+
+<section>
+  <h2>Comparators</h2>
+  <div>
+  package rereward
+
+class CustomerController {
+    static scaffold = Customer
+	
+	def lookup() {
+		//def customerInstance = Customer.findAllByLastNameLike("B%")
+		//like is case sensitive whereas Ilike is case insensitive
+	//def customerInstance = Customer.findAllByLastNameIlike("b%")
+	//def customerInstance = Customer.findAllByTotalPointsGreaterThan(3)
+	//def customerInstance = Customer.findAllByTotalPointsGreaterThanEquals(3)
+	//def customerInstance = Customer.findAllByTotalPointsGreaterThanEquals(3, [sort: "totalPoints", order: "desc"])
+	//def customerInstance = Customer.findAllByTotalPointsBetween(2,4, [sort: "totalPoints", order: "desc"])
+	//def customerInstance = Customer.findAllByFirstNameAndTotalPoints("Bo", 3)
+	def customerInstance = Customer.findAllByFirstNameIlikeAndTotalPointsGreaterThanEquals("B%", 3)
+		[customerInstanceList: customerInstance]
+	}
+
+}
+
+  </div>
+</section>
+
+
+<section>
+  <h2>CRUD - List And Create</h2>
+  <div>
+  package rereward
+
+class CustomerController {
+    static scaffold = Customer
+	
+	def lookup() {
+		//def customerInstance = Customer.findAllByLastNameLike("B%")
+		//like is case sensitive whereas Ilike is case insensitive
+	//def customerInstance = Customer.findAllByLastNameIlike("b%")
+	//def customerInstance = Customer.findAllByTotalPointsGreaterThan(3)
+	//def customerInstance = Customer.findAllByTotalPointsGreaterThanEquals(3)
+	//def customerInstance = Customer.findAllByTotalPointsGreaterThanEquals(3, [sort: "totalPoints", order: "desc"])
+	//def customerInstance = Customer.findAllByTotalPointsBetween(2,4, [sort: "totalPoints", order: "desc"])
+	//def customerInstance = Customer.findAllByFirstNameAndTotalPoints("Bo", 3)
+	def customerInstance = Customer.findAllByFirstNameIlikeAndTotalPointsGreaterThanEquals("B%", 3)
+		[customerInstanceList: customerInstance]
+	}
+	
+	def index() {
+		params.max = 10
+		[customerList: Customer.list(params), customerCount: Customer.count()]
+	}
+	
+	def create() {
+		[customer: new Customer()]
+	}
+
+}
+
+  </div>
+</section>
+
+
+<section>
+  <h2>CRUD - Save And Show</h2>
+  <div>
+  package rereward
+
+class CustomerController {
+    static scaffold = Customer
+	
+	def lookup() {
+		//def customerInstance = Customer.findAllByLastNameLike("B%")
+		//like is case sensitive whereas Ilike is case insensitive
+	//def customerInstance = Customer.findAllByLastNameIlike("b%")
+	//def customerInstance = Customer.findAllByTotalPointsGreaterThan(3)
+	//def customerInstance = Customer.findAllByTotalPointsGreaterThanEquals(3)
+	//def customerInstance = Customer.findAllByTotalPointsGreaterThanEquals(3, [sort: "totalPoints", order: "desc"])
+	//def customerInstance = Customer.findAllByTotalPointsBetween(2,4, [sort: "totalPoints", order: "desc"])
+	//def customerInstance = Customer.findAllByFirstNameAndTotalPoints("Bo", 3)
+	def customerInstance = Customer.findAllByFirstNameIlikeAndTotalPointsGreaterThanEquals("B%", 3)
+		[customerInstanceList: customerInstance]
+	}
+	
+	def index() {
+		params.max = 10
+		[customerList: Customer.list(params), customerCount: Customer.count()]
+	}
+	
+	def create() {
+		[customer: new Customer()]
+	}
+	
+	def save(Customer customer) {
+		customer.save()
+		redirect(action: "show", id: customer.id)
+	}
+	
+	def show(Long id) {
+		def customer  = Customer.get(id)
+		[customer: customer]
+	}
+
+}
+
+  </div>
+</section>
+
+
+<section>
+  <h2>CRUD - Edit, Update, And Delete</h2>
+  <div>
+  package rereward
+
+class CustomerController {
+    static scaffold = Customer
+	
+	def lookup() {
+		//def customerInstance = Customer.findAllByLastNameLike("B%")
+		//like is case sensitive whereas Ilike is case insensitive
+	//def customerInstance = Customer.findAllByLastNameIlike("b%")
+	//def customerInstance = Customer.findAllByTotalPointsGreaterThan(3)
+	//def customerInstance = Customer.findAllByTotalPointsGreaterThanEquals(3)
+	//def customerInstance = Customer.findAllByTotalPointsGreaterThanEquals(3, [sort: "totalPoints", order: "desc"])
+	//def customerInstance = Customer.findAllByTotalPointsBetween(2,4, [sort: "totalPoints", order: "desc"])
+	//def customerInstance = Customer.findAllByFirstNameAndTotalPoints("Bo", 3)
+	def customerInstance = Customer.findAllByFirstNameIlikeAndTotalPointsGreaterThanEquals("B%", 3)
+		[customerInstanceList: customerInstance]
+	}
+	
+	def index() {
+		params.max = 10
+		[customerList: Customer.list(params), customerCount: Customer.count()]
+	}
+	
+	def create() {
+		[customer: new Customer()]
+	}
+	
+	def save(Customer customer) {
+		customer.save()
+		redirect(action: "show", id: customer.id)
+	}
+	
+	def show(Long id) {
+		def customer  = Customer.get(id)
+		[customer: customer]
+	}
+
+	
+	def edit(Long id) {
+		def customer  = Customer.get(id)
+		[customer: customer]
+	}
+	
+	def update(Customer customer) {
+		customer.save()
+		redirect(action: "show", id: customer.id)
+
+	}
+	
+	def delete(Long id) {
+		def customer = Customer.get(id)
+		customer.delete()
+		redirect(action: "index")
+	}
+
+}
+
+  </div>
+</section>
+
+
+
+<section>
+  <h2>Looping Through Data</h2>
+  <div>
+  package rereward
+
+class CustomerController {
+    static scaffold = Customer
+	
+	def calculationService
+	def show(Long id) {
+		def customer  = Customer.get(id)
+		customer = calculationService.getTotalPoints(customer)
+		[customer: customer]
+	}
+
+
+}
+
+
+@Transactional
+class CalculationService {
+	def getTotalPoints(customer){
+		def totalAwards = 0
+		customer.awards.each{
+			totalAwards = totalAwards + it.points
+		}
+		customer.totalPoints = totalAwards
+		return customer
+	}
+}
+
+  </div>
+</section>
