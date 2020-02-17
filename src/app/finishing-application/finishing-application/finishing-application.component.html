@@ -1,0 +1,111 @@
+<section>
+  <h2>Linking The Delete Button</h2>
+  <div>
+  _kioskForm.gsp
+    <!-- <div class="col-sm-4"><input class="btn btn-danger btn-lg btn-block" type="button" name="pad" value="Del"/></div> -->
+	<div class="col-sm-4"><g:link class="btn btn-danger btn-lg btn-block" action="checkin">Del</g:link></div>
+     As long as we are in same action we don't need to specify view name in action
+  </div>
+</section>
+
+<section>
+  <h2>Linking The Go Button</h2>
+  <div>
+   _kioskForm.gsp
+    <!--<div class="col-sm-4"><input class="btn btn-success btn-lg btn-block" type="button" name="pad" value="Go"/></div>-->
+	<div class="col-sm-4"><g:submitButton class="btn btn-success btn-lg btn-block" name="pad" value="Go"/></div>
+              
+			  
+	////////////////
+	checkin.gsp
+    <g:form url="[resource:customerInstance, action:'customerLookup']" >
+      <g:render template="kiosForm"/>
+    </g:form>
+	This will submit form to action customerLoopup by passing customerInstance		
+  </div>
+</section>
+
+<section>
+  <h2>Outling The Action</h2>
+  <div>
+	CustomerController.groovy
+  
+	def customerLookup() {
+		// Query customer by phone +
+		// If no result
+		// Ceate a new Customer
+		// Create welcome message
+		// Add award record
+		// Send welcome to kiosk
+		
+		
+		//If customer found
+		// Calculate total points
+		// Create welcome message
+		// Add award record
+		// Send welcome to kiosk
+		
+	}
+  </div>
+</section>
+
+
+<section>
+  <h2>Creating The Action</h2>
+  <div>
+
+class CustomerController {
+    static scaffold = Customer
+	
+	def calculationService
+	
+	def checkin(){
+	}
+
+	def customerLookup(Customer lookupInstance) {
+	
+		def (customerInstance, welcomeMessage)= calculationService.processCheckin()
+		render(view: "checkin", model: [customerInstance: customerInstance, welcomeMessage: welcomeMessage])
+		// since checkin action doesnot do anything so instead of redirecting like below we use render to directy call view
+		//redirect(action: "checkin")
+		
+		
+		// Query customer by phone +
+		// If no result
+		// Ceate a new Customer
+		// Create welcome message
+		// Add award record
+		// Send welcome to kiosk
+		
+		
+		//If customer found
+		// Calculate total points
+		// Create welcome message
+		// Add award record
+		// Send welcome to kiosk
+		
+	}
+}
+
+  </div>
+</section>
+
+<section>
+  <h2>Running Full Stack</h2>
+  <div>
+  </div>
+</section>
+
+<section>
+  <h2>Finishing The Service - Part1</h2>
+  <div>
+  </div>
+</section>
+
+<section>
+  <h2>Finishing The Service - Part2</h2>
+  <div>
+  </div>
+</section>
+
+
